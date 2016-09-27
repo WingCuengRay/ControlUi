@@ -3,6 +3,7 @@
 
 #include <string>
 #include <iostream>
+#include "Port.h"
 
 extern "C"
 {
@@ -27,10 +28,10 @@ enum Parity
 };
 
 
-class Port
+class SerialPort : public Port
 {
 public:
-	Port(int speed = 9600, bool fc = 0, DataBits db = EIGHT, StopBits sb = ONE,
+	SerialPort(int speed = 9600, bool fc = 0, DataBits db = EIGHT, StopBits sb = ONE,
 		Parity pa = N)
 	{
 		setPortAttr(speed, fc, db, sb, pa);
@@ -46,7 +47,7 @@ public:
 		parity = pa;
 	}
 	
-	bool bindCom(int fd);
+	bool setConfiguration(int fd);
 	
 private:	
 	int baud;

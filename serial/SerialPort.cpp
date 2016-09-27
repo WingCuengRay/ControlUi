@@ -1,11 +1,13 @@
 #include "SerialPort.h"
 
-bool Port::bindCom(int fd)
+bool SerialPort::setConfiguration(int fd)
 {
 	struct termios options;
-	const int speedBin_arr[] = { B38400, B19200, B9600, B4800, B2400, B1200, B300,
-		B38400, B19200, B9600, B4800, B2400, B1200, B300 };
-	int speedDec_arr[] = {38400,  19200,  9600,  4800,  2400,  1200,  300,      38400,  19200,  9600, 4800, 2400, 1200,  300 };
+	const int speedBin_arr[] = { B38400, B19200, B9600, B4800, 
+								 B2400, B1200, B300,B38400, B19200, 
+								 B9600, B4800, B2400, B1200, B300 };
+	int speedDec_arr[] = {38400,  19200,  9600,  4800,  2400,  1200,  
+						 300, 8400, 19200, 9600, 4800, 2400, 1200, 300};
 	
 	if(tcgetattr(fd, &options) == -1)
 	{

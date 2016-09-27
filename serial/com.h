@@ -4,6 +4,7 @@
 #include <string>
 #include <iostream>
 #include "SerialPort.h"
+#include <memory>
 
 extern "C"
 {
@@ -18,13 +19,14 @@ class Com
 public:
 	std::string name;
 	
-	Com(const std::string &nme, const Port &p) : name(nme), port(p)
+	Com(const std::string &nme, std::shared_ptr<Port> p) : name(nme), port(p)
 	{
 		fd = -1;
 	}
 	Com(std::string nme) : name(nme)
 	{
-		port.setPortAttr(9600, 0, EIGHT, ONE, N);
+		//这句代码增加了 COM 和 SerialPort 的耦合性
+		//port->setPortAttr(9600, 0, EIGHT, ONE, N);
 		fd = -1;
 	}
 	
@@ -34,7 +36,7 @@ public:
 	
 private:
 	int fd;
-	Port port;
+	std::shared_ptr<Port> port;
 };
 
 #endif

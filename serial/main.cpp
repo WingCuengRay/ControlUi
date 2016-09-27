@@ -6,8 +6,8 @@ using namespace std;
 
 int main(int argc, char **argv)
 {
-	Port port1(9600);
-	Com com1("/dev/ttyS0", port1);
+	SerialPort port1(9600);
+	Com com1("/dev/ttyS0", make_shared<SerialPort>(port1));
 	
 	if(com1.OpenCom() == false)
 	{

@@ -14,7 +14,7 @@ bool Com::bind()
 {
 	if(fd == -1)
 		return false;
-	return port.bindCom(fd);
+	return port->setConfiguration(fd);
 }
 
 int Com::recv_data(char *buf, size_t len)
