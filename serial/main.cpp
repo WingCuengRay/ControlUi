@@ -1,13 +1,15 @@
 #include "SerialPort.h"
 #include "com.h"
+#include "table.h"
 #include <iostream>
 
 using namespace std;
 
 int main(int argc, char **argv)
 {
-	SerialPort port1(9600);
+	SerialPort port1(115200);
 	Com com1("/dev/ttyS0", make_shared<SerialPort>(port1));
+	
 	
 	if(com1.OpenCom() == false)
 	{
@@ -27,6 +29,17 @@ int main(int argc, char **argv)
 	{
 		buf[ret] = 0;
 		cout << "buf: " << buf << endl;
+		
+		string str(buf);
+		Cmdtable cmd("./table");
+		const map<string, int> &table = cmd.getTable();
+		
+		map<string, int>::const_iterator it = table.find(str);
+		if( it != table.cend())
+		{
+			cout << it->second << endl;
+			
+		}
 	}
 	else
 		cout << "recv_data error." << endl;

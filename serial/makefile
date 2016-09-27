@@ -1,7 +1,7 @@
-obj := SerialPort.cpp main.cpp Com.cpp
+obj := SerialPort.cpp main.cpp Com.cpp table.cpp
 
 all: $(obj)
-	g++ -std=c++0x -o main $^
+	g++-6 -std=c++11 -o main $^
 
 test: serial.cpp
 	g++ -o serial $^
