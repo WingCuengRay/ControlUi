@@ -1,19 +1,20 @@
-#include <stdio.h>
-#include <string.h>
+#include "Frame.h"
 
-struct Frame
+using namespace std;
+bool Frame::Valid()
 {
-public:
-	Frame(unsigned char *s = NULL) : etr(s)
-	{
-		if(s == NULL)
-			length = 1;
-		else
-			length = strlen(s)+1;
-	}
-	unsigned char head = 0x55;
-	unsigned char length;
-	unsigned char cmd;
-	unsigned char *etr;
-	unsigned char tail = 0x56;
-};
+	uchar res = head ^ tail ^ length ^ dat.cmd;
+	for(unsigned int i=0; i<dat.etr.size(); i++)
+		res ^= dat.etr[i];
+	
+#ifdef __DEBUG
+	cout << "In Frame::Valid() :\n";
+	cout << "\tValidation Code: 0x" << hex << (int)valid << endl;
+	cout << "\tResult Code: 0x" << hex << (int)res << endl;
+#endif
+	
+	if(res == valid)
+		return true;
+	else
+		return false;
+}

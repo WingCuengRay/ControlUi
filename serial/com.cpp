@@ -20,7 +20,7 @@ bool Com::bind()
 int Com::recv_data(char *buf, size_t len)
 {
 	int ret = read(fd, buf, len);
-	if(ret >= 0)
-		buf[ret] = 0;
+//	if(ret >= 0)
+//		buf[ret] = 0;
 	return ret;
 }

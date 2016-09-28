@@ -7,53 +7,17 @@
 class WaitLenState : public State
 {
 public:
-	WaitLenState(shared_ptr<Usart_FSM> pfsm) : usartFsm(pfsm)
-	{}
+	WaitLenState(Usart_FSM *pfsm);
 	
-	bool sendHead()
-	{
-		return false;	
-	}
-	
-	bool sendLength()
-	{
-		char ch;
-		if(usartFsm.com.recv_data(&ch, 1) == 1)
-		{
-			usartFsm.frame.length = ch;
-			usartFsm.setState(usartFsm->getWaitCmdState());
-			return true;
-		}
-		else
-		{
-			usartFsm.setState(usartFsm->getIdleState());
-			return false;
-		}		
-	}
-	
-	bool sendCmd()
-	{
-		return false;
-	}
-	
-	bool sendExtra()
-	{
-		return false;
-	}
-	
-	bool sendValid()
-	{
-		return false;
-	}
-	
-	bool sendTail()
-	{
-		return false;
-	}
-	
+	bool sendHead();
+	bool sendLength();
+	bool sendCmd();
+	bool sendExtra();
+	bool sendValid();
+	bool sendTail();
 	
 private:
-	shared_ptr<Usart_FSM> usartFsm; 
+	std::shared_ptr<Usart_FSM> usartFsm; 
 };
 
 #endif

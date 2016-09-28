@@ -10,7 +10,6 @@ int main(int argc, char **argv)
 	SerialPort port1(115200);
 	Com com1("/dev/ttyS0", make_shared<SerialPort>(port1));
 	
-	
 	if(com1.OpenCom() == false)
 	{
 		cout << "OpenCom error." << endl;

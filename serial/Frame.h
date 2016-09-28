@@ -1,72 +1,43 @@
 #include <stdio.h>
 #include <string.h>
 #include "com.h"
+#include <memory>
+#include <vector>
 
 typedef unsigned char uchar;
 struct Data
 {
+	Data(uchar *s) : cmd(0)
+	{
+		//赋值给 etr
+		if(s == NULL)
+			return;
+		for(int i=0; s[i]!=0; i++)
+			etr.push_back(s[i]);
+	}
 	unsigned char cmd;
-	string etr;
+	std::vector<uchar> etr;
 };
 
 class Frame
 {
 public:
-	Frame(unsigned char *s = NULL) : etr(s)
+	Frame(unsigned char *s = NULL) : dat(s)
 	{
 		if(s == NULL)
 			length = 1;
 		else
-			length = strlen(s)+1;
+			length = strlen((char *)s)+1;
 	}
 	
 	
 	bool Valid();
 	
-	const unsigned char head = 0x55;
+	//使用不可打印字符当作帧头帧尾同步符
+	const unsigned char head = 0x02; 
+	const unsigned char tail = 0x03;
 	unsigned char length;
 	Data dat;
 	unsigned char valid;
-	const unsigned char tail = 0x56;
 	
-	/**
-	bool fsm_getData(const Com& com)
-	{
-		uchar ch;
-		//空闲等待
-		while(1)
-		{
-			if(recv_data(&ch, 1)==1)
-			{
-				if(ch == head)
-					break;
-			}
-			else		//接收失败（或非阻塞模式无数据接收）
-				return false;
-		}
-		
-		if(recv_data(&ch, 1)==1)
-		{
-			length = ch;
-		}
-		if(recv_data(&ch, 1)==1)
-		{
-			dat.cmd = ch;
-		}
-		
-		string tmp;
-		for(int i=length; i!=0; i--)
-		{
-			if(recv_data(&ch, 1) != 1)
-				return false;
-			tmp.push_back(ch);
-		}
-		
-		if(recv_data(&ch, 1)==1)
-		{
-			if(ch == )
-		}
-		
-	}
-	**/
 };

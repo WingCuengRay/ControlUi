@@ -1,67 +1,23 @@
-#ifndef __WAIT_VALID_STATE_H
-#define __WAIT_VALID_STATE_H
+#ifndef __WAIT_TAIL_STATE_H
+#define __WAIT_TAIL_STATE_H
 
 #include "State.h"
 #include "Usart_FSM.h"
 
-class WaitValidState : public State
+class WaitTailState : public State
 {
 public:
-	WaitValidState(shared_ptr<Usart_FSM> pfsm) : usartFsm(pfsm)
-	{}
+	WaitTailState(Usart_FSM *pfsm);
 	
-	bool sendHead()
-	{
-		return false;	
-	}
-	
-	bool sendLength()
-	{
-		return false;
-	}
-	
-	bool sendCmd()
-	{
-		return false;
-	}
-	
-	bool sendExtra()
-	{
-		return false;
-	}
-	
-	bool sendValid()
-	{
-		return false;
-	}
-	
-	bool sendTail()
-	{
-		char ch;
-		if(usartFsm.com.recv_data(&ch, 1) == 1)
-		{
-			if(ch == usartFsm.frame.tail)
-			{
-				usartFsm.setState(usartFsm->getIdleState());
-				return true;
-			}
-				
-			else
-			{
-				usartFsm.setState(usartFsm->getIdleState());
-				return false;
-			}		
-		}
-		else
-		{
-			usartFsm.setState(usartFsm->getIdleState());
-			return false;
-		}
-	}
-	
+	bool sendHead();
+	bool sendLength();
+	bool sendCmd();
+	bool sendExtra();
+	bool sendValid();
+	bool sendTail();
 	
 private:
-	shared_ptr<Usart_FSM> usartFsm; 
+	std::shared_ptr<Usart_FSM> usartFsm; 
 };
 
 #endif

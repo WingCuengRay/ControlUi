@@ -7,55 +7,17 @@
 class IdleState : public State
 {
 public:
-	IdleState(shared_ptr<Usart_FSM> pfsm) : usartFsm(pfsm)
-	{}
+	IdleState(Usart_FSM* pfsm);
 	
-	bool sendHead()
-	{
-		char ch;
-		if(usartFsm.com.recv_data(&ch, 1) == 1)
-		{
-			if(ch == usartFsm.frame.head)
-			{
-				usartFsm.setState(usartFsm->getWaitLenState());
-				return true;
-			}
-			else
-			{
-				usartFsm.setState(usartFsm->getIdleState());
-				return false;
-			}
-			
-		}
-	}
-	bool sendLength()
-	{
-		return false;
-	}
-	
-	bool sendCmd()
-	{
-		return false;
-	}
-	
-	bool sendExtra()
-	{
-		return false;
-	}
-	
-	bool sendValid()
-	{
-		return false;
-	}
-	
-	bool sendTail()
-	{
-		return false;
-	}
-	
+	bool sendHead();
+	bool sendLength();
+	bool sendCmd();
+	bool sendExtra();
+	bool sendValid();
+	bool sendTail();
 	
 private:
-	shared_ptr<Usart_FSM> usartFsm; 
+	std::shared_ptr<Usart_FSM> usartFsm; 
 };
 
 #endif

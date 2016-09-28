@@ -7,61 +7,21 @@
 class WaitEtrState : public State
 {
 public:
-	WaitEtrState(shared_ptr<Usart_FSM> pfsm) : usartFsm(pfsm)
-	{}
+	WaitEtrState(Usart_FSM* pfsm);
 	
-	bool sendHead()
-	{
-		return false;	
-	}
+	bool sendHead();
 	
-	bool sendLength()
-	{
-		return false;
-	}
+	bool sendLength();
+	bool sendCmd();
 	
-	bool sendCmd()
-	{
-		return false;
-	}
+	bool sendExtra();
+	bool sendValid();
 	
-	bool sendExtra()
-	{
-		char ch;
-		string tmp;
-		
-		for(int i=length-1; i!=0; )
-		{
-			if(usartFsm.com.recv_data(&ch, 1) == 1)
-			{
-				tmp.push_back(ch);
-				i--;
-			}
-			else
-			{
-				usartFsm.setState(usartFsm->getIdleState());
-				return false;
-			}
-		}
-		usartFsm.frame.dat.etr = tmp;
-		usartFsm.setState(usartFsm->getWaitValidState());
-		
-		return true;
-	}
-	
-	bool sendValid()
-	{
-		return false;
-	}
-	
-	bool sendTail()
-	{
-		return false;
-	}
+	bool sendTail();
 	
 	
 private:
-	shared_ptr<Usart_FSM> usartFsm; 
+	std::shared_ptr<Usart_FSM> usartFsm; 
 };
 
 #endif

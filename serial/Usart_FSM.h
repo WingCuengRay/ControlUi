@@ -4,57 +4,41 @@
 #include <memory>
 #include "State.h"
 #include "com.h"
+#include "Frame.h"
+
 
 class Usart_FSM
 {
 public:
-	Usart_FSM(const com1& tmpcom) : com(tmpcom) 
-	{
-		idleState = make_shared<IdleState>(this);
-		waitLenState = make_shared<WaitLenState>(this);
-		waitCmdState = make_shared<WaitCmdState>(this);
-		waitValidState = make_shared<WaitValidState>(this);
-		waitEtrState = make_shared<WaitEtrState>(this);
-		
-		state = idleState;
-	}
+	Usart_FSM(const Com& tmpcom);
 	
-	void setState(shared_ptr<State> tstate)
-	{
-		state = tstate;
-	}
+	void setState(std::shared_ptr<State> tstate);
 
-	bool sendHead()
-	{ state.sendHead(); }
-	bool sendTail()
-	{ state.sendTail(); }
-	bool sendCmd()
-	{ state.sendCmd(); }
-	bool sendValid()
-	{ state.sendValid(); }
-	bool sendExtra()
-	{ state.sendExtra(); }
-	bool sendLength()
-	{ state.sendLength(); }
+	bool sendHead();
+	bool sendTail();
+	bool sendCmd();
+	bool sendValid();
+	bool sendExtra();
+	bool sendLength();
 	
-	shared_ptr<State> getIdleState();
-	shared_ptr<State> getWaitLenState();
-	shared_ptr<State> getWaitCmdState();
-	shared_ptr<State> getWaitValidState();
-	shared_ptr<State> getWaitEtrState();
-	shared_ptr<State> getWaitTailState();
+	std::shared_ptr<State> getIdleState();
+	std::shared_ptr<State> getWaitLenState();
+	std::shared_ptr<State> getWaitCmdState();
+	std::shared_ptr<State> getWaitValidState();
+	std::shared_ptr<State> getWaitEtrState();
+	std::shared_ptr<State> getWaitTailState();
 
 	Com com;
 	Frame frame;
 	
 private:
-	shared_ptr<State> state;
-	shared_ptr<State> idleState;
-	shared_ptr<State> waitLenState;
-	shared_ptr<State> waitCmdState;
-	shared_ptr<State> waitValidState;
-	shared_ptr<State> waitEtrState;
-	shared_ptr<State> waitTailState;
+	std::shared_ptr<State> state;
+	std::shared_ptr<State> idleState;
+	std::shared_ptr<State> waitLenState;
+	std::shared_ptr<State> waitCmdState;
+	std::shared_ptr<State> waitValidState;
+	std::shared_ptr<State> waitEtrState;
+	std::shared_ptr<State> waitTailState;
 };
 
 #endif
