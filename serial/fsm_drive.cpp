@@ -1,4 +1,5 @@
 #include "Usart_FSM.h"
+#include "Frame.h"
 
 using namespace std;
 int main(void)
@@ -30,18 +31,20 @@ int main(void)
 		cout << "FSM starting.\n";
 	#endif
 	
-	if(pfsm->sendHead())
-		cout << "sendHead success!\n";
-	if(pfsm->sendLength())
-		cout << "sendLength success!\n";
-	if(pfsm->sendCmd())
-		cout << "sendCmd success!\n";
-	if(pfsm->sendExtra())
-		cout << "sendExtra success!\n";
-	if(pfsm->sendValid())
-		cout << "sendValid success!\n";
-	if(pfsm->sendTail())
-		cout << "sendTail success && Validation OK!\n";
+	Data usrdat;
+	while(1)
+	{
+		//保证每次循环开始处于起始状态
+		pfsm->setState(pfsm->getIdleState());
+		if(pfsm->drive(usrdat))
+		{
+			cout << "cmd:\t" << hex << (int)usrdat.cmd << endl;
+			cout << "extra:\t";
+			for(auto it=usrdat.etr.cbegin(); it!=usrdat.etr.cend(); it++)
+				cout << hex << (int)(*it) << ' ';
+			cout << endl;
+		}
+	}
 		
 	return 0;
 }

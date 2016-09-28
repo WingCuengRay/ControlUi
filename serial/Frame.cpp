@@ -10,7 +10,7 @@ bool Frame::Valid()
 #ifdef __DEBUG
 	cout << "In Frame::Valid() :\n";
 	cout << "\tValidation Code: 0x" << hex << (int)valid << endl;
-	cout << "\tResult Code: 0x" << hex << (int)res << endl;
+	cout << "\That should be: 0x" << hex << (int)res << endl;
 #endif
 	
 	if(res == valid)

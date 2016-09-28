@@ -13,13 +13,8 @@ public:
 	Usart_FSM(const Com& tmpcom);
 	
 	void setState(std::shared_ptr<State> tstate);
+	bool drive(Data &usrdat);
 
-	bool sendHead();
-	bool sendTail();
-	bool sendCmd();
-	bool sendValid();
-	bool sendExtra();
-	bool sendLength();
 	
 	std::shared_ptr<State> getIdleState();
 	std::shared_ptr<State> getWaitLenState();
@@ -32,7 +27,15 @@ public:
 	Frame frame;
 	
 private:
+	bool sendHead();
+	bool sendCmd();
+	bool sendValid();
+	bool sendExtra();
+	bool sendLength();
+	bool sendTail(Data &usrdat);
+	
 	std::shared_ptr<State> state;
+	
 	std::shared_ptr<State> idleState;
 	std::shared_ptr<State> waitLenState;
 	std::shared_ptr<State> waitCmdState;

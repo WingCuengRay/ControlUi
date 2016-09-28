@@ -16,15 +16,6 @@ Usart_FSM::Usart_FSM(const Com& tmpcom) : com(tmpcom)
 	waitValidState = std::make_shared<WaitValidState>(this);
 	waitEtrState = std::make_shared<WaitEtrState>(this);
 	waitTailState = std::make_shared<WaitTailState>(this);
-
-	/**
-	idleState = shared_ptr<State>(static_cast<State *>(new IdleState(this)));
-	waitLenState = shared_ptr<State>(static_cast<State *>(new WaitLenState(this)));
-	waitCmdState = shared_ptr<State>(static_cast<State *>(new WaitCmdState(this)));
-	waitValidState = shared_ptr<State>(static_cast<State *>(new WaitValidState(this)));
-	waitEtrState = shared_ptr<State>(static_cast<State *>(new WaitEtrState(this)));
-	waitTailState = shared_ptr<State>(static_cast<State *>(new WaitTailState(this)));
-	**/
 	
 	state = idleState;
 }
@@ -64,11 +55,44 @@ shared_ptr<State> Usart_FSM::getWaitTailState()
 	return waitTailState;
 }
 
+bool Usart_FSM::drive(Data &usrdat)
+{
+	while(!sendHead())
+		;
+#ifdef __DEBUG
+	cout << "befor Usart_FSM::sendLength()\n";
+#endif
+	if(!sendLength())
+		false;
+#ifdef __DEBUG
+	cout << "befor Usart_FSM::sendCmd()\n";
+#endif
+	if(!sendCmd())
+		false;
+#ifdef __DEBUG
+	cout << "befor Usart_FSM::sendExtra()\n";
+#endif
+	if(!sendExtra())
+		false;
+#ifdef __DEBUG
+	cout << "befor Usart_FSM::sendValid()\n";
+#endif
+	if(!sendValid())
+		false;
+#ifdef __DEBUG
+	cout << "befor Usart_FSM::sendTail()\n";
+#endif
+	if(sendTail(usrdat))
+		return true;
+#ifdef __DEBUG
+	cout << "Finish a whole dirve But Validation failed\n";
+#endif
+	
+	return false;
+}
 
 bool Usart_FSM::sendHead()
 { return state->sendHead(); }
-bool Usart_FSM::sendTail()
-{ return state->sendTail(); }
 bool Usart_FSM::sendCmd()
 { return state->sendCmd(); }
 bool Usart_FSM::sendValid()
@@ -77,4 +101,17 @@ bool Usart_FSM::sendExtra()
 { return state->sendExtra(); }
 bool Usart_FSM::sendLength()
 { return state->sendLength(); }
+
+bool Usart_FSM::sendTail(Data &usrdat)
+{
+	if(state->sendTail())
+	{
+		usrdat = frame.dat;
+		return true;
+	}
+	
+	return false;
+}
+
+
 

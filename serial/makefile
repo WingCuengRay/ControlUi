@@ -6,6 +6,9 @@ all: $(obj)
 	g++-6 -std=c++11 -o main $^
 	
 fsm: $(obj_fsm)
+	g++-6 -Wall -O2 -std=c++11 -o fsm $^
+	
+fsm_debug: $(obj_fsm)
 	clear
 	g++-6 -g -Wall -std=c++11 -D__DEBUG -o fsm $^
 

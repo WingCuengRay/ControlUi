@@ -1,3 +1,6 @@
+#ifndef __FRAME_H
+#define __FRAME_H
+
 #include <stdio.h>
 #include <string.h>
 #include "com.h"
@@ -7,7 +10,7 @@
 typedef unsigned char uchar;
 struct Data
 {
-	Data(uchar *s) : cmd(0)
+	Data(uchar * s = NULL) : cmd(0)
 	{
 		//赋值给 etr
 		if(s == NULL)
@@ -34,10 +37,13 @@ public:
 	bool Valid();
 	
 	//使用不可打印字符当作帧头帧尾同步符
-	const unsigned char head = 0x02; 
-	const unsigned char tail = 0x03;
+	static const unsigned char head = 0x02; 
+	static const unsigned char tail = 0x03;
 	unsigned char length;
 	Data dat;
 	unsigned char valid;
 	
 };
+
+
+#endif
