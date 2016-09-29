@@ -9,14 +9,14 @@ obj_fsm := fsm_drive.o SerialPort.o  com.o table.o Frame.o Usart_FSM.o IdleState
 
 fsm: $(obj_fsm)
 	clear
-	$(CC) $(CFLAGS_DEBUG) -o $@ $^
+	$(CC) $(CFLAGS) -o $@ $^
 	
 fsm_debug: $(obj_fsm)
 	clear
-	$(CC) $(CFLAGS_DEBUG) -o $@ $^
+	$(CC) $(CFLAGS) -o $@ $^
 	
 %.o: %.cpp
-	$(CC) $(CFLAGS_DEBUG) -c -o $@ $^
+	$(CC) $(CFLAGS) -c -o $@ $^
 	
 clean:
 	rm -f *.o main fsm
