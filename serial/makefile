@@ -5,7 +5,7 @@ CFLAGS_DEBUG := -std=c++11 -Wall -g -D__DEBUG
 obj := main.o SerialPort.o  com.o table.o Frame.o Usart_FSM.o IdleState.o WaitLenState.o  \
 		WaitEtrState.o WaitCmdState.o WaitValidState.o WaitTailState.o 
 obj_fsm := fsm_drive.o SerialPort.o  com.o table.o Frame.o Usart_FSM.o IdleState.o WaitLenState.o  \
-		WaitEtrState.o WaitCmdState.o WaitValidState.o WaitTailState.o 
+		WaitEtrState.o WaitCmdState.o WaitValidState.o WaitTailState.o rio.o
 	
 fsm: $(obj_fsm)
 	$(CC) $(CFLAGS_DEBUG) -o $@ $^
