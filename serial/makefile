@@ -6,20 +6,16 @@ obj := main.o SerialPort.o  com.o table.o Frame.o Usart_FSM.o IdleState.o WaitLe
 		WaitEtrState.o WaitCmdState.o WaitValidState.o WaitTailState.o 
 obj_fsm := fsm_drive.o SerialPort.o  com.o table.o Frame.o Usart_FSM.o IdleState.o WaitLenState.o  \
 		WaitEtrState.o WaitCmdState.o WaitValidState.o WaitTailState.o 
-
-all: $(obj)
-	clear
-	g++-6 -std=c++11 -o main $^
 	
 fsm: $(obj_fsm)
-	$(CC) $(CFLAGS) -o $@ $^
+	$(CC) $(CFLAGS_DEBUG) -o $@ $^
 	
 fsm_debug: $(obj_fsm)
 	clear
 	$(CC) $(CFLAGS_DEBUG) -o $@ $^
 	
 %.o: %.cpp
-	$(CC) $(CFLAGS) -c -o $@ $^
+	$(CC) $(CFLAGS_DEBUG) -c -o $@ $^
 	
 clean:
 	rm -f *.o main fsm

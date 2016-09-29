@@ -6,8 +6,6 @@ CFLAGS_DEBUG := -std=c++11 -Wall -g -D__DEBUG -DPLATFORM_WIN32
 CPP_SRC = $(wildcard ./*/*.cpp)
 CPP_OBJS = $(patsubst %cpp, %o, $(CPP_SRC))
 
-all: $(CPP_OBJS)
-	$(CC) $(CFLAGS) -o main $^
 
 debug: $(CPP_OBJS)
 	$(CC) $(CFLAGS_DEBUG) -o main $^
