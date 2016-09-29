@@ -3,11 +3,6 @@
 WaitTailState::WaitTailState(Usart_FSM *pfsm) : usartFsm(pfsm)
 {}
 
-bool WaitTailState::sendHead()
-{
-	return false;	
-}
-
 bool WaitTailState::sendLength()
 {
 	return false;
@@ -28,19 +23,14 @@ bool WaitTailState::sendValid()
 	return false;
 }
 
-bool WaitTailState::sendTail()
+bool WaitTailState::sendSynChar()
 {
 	char ch;
 	if(usartFsm->com.recv_data(&ch, 1) == 1)
 	{
-		if(ch == usartFsm->frame.head)
-		{
-			//一旦收到帧头，立刻重新开始新帧的读取
-			usartFsm->setState(usartFsm->getWaitLenState());
-			return false;
-		}
-		//收到帧尾，判断 valid 是否正确并跳转至相应状态
-		else if(ch == usartFsm->frame.tail)
+
+		//收到帧同步符，判断 valid 是否正确并跳转至相应状态
+		if(ch == usartFsm->frame.syn)
 		{			
 			if(usartFsm->frame.Valid()==true)
 			{

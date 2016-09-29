@@ -3,11 +3,11 @@
 WaitLenState::WaitLenState(Usart_FSM *pfsm) : usartFsm(pfsm)
 {}
 
-bool WaitLenState::sendHead()
+bool WaitLenState::sendSynChar()
 {
-	return false;	
+	//usartFsm->setState(usartFsm->getIdleState());
+	return false;
 }
-
 
 bool WaitLenState::sendLength()
 {
@@ -38,11 +38,6 @@ bool WaitLenState::sendExtra()
 }
 
 bool WaitLenState::sendValid()
-{
-	return false;
-}
-
-bool WaitLenState::sendTail()
 {
 	return false;
 }

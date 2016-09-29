@@ -35,7 +35,6 @@ int main(void)
 	while(1)
 	{
 		//保证每次循环开始处于起始状态
-		pfsm->setState(pfsm->getIdleState());
 		if(pfsm->drive(usrdat))
 		{
 			cout << "cmd:\t" << hex << (int)usrdat.cmd << endl;

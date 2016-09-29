@@ -59,26 +59,27 @@ bool Usart_FSM::drive(Data &usrdat)
 {
 	while(!sendHead())
 		;
+		
 #ifdef __DEBUG
 	cout << "befor Usart_FSM::sendLength()\n";
 #endif
 	if(!sendLength())
-		false;
+		return false;
 #ifdef __DEBUG
 	cout << "befor Usart_FSM::sendCmd()\n";
 #endif
 	if(!sendCmd())
-		false;
+		return false;
 #ifdef __DEBUG
 	cout << "befor Usart_FSM::sendExtra()\n";
 #endif
 	if(!sendExtra())
-		false;
+		return false;
 #ifdef __DEBUG
 	cout << "befor Usart_FSM::sendValid()\n";
 #endif
 	if(!sendValid())
-		false;
+		return false;
 #ifdef __DEBUG
 	cout << "befor Usart_FSM::sendTail()\n";
 #endif
@@ -92,7 +93,7 @@ bool Usart_FSM::drive(Data &usrdat)
 }
 
 bool Usart_FSM::sendHead()
-{ return state->sendHead(); }
+{ return state->sendSynChar(); }
 bool Usart_FSM::sendCmd()
 { return state->sendCmd(); }
 bool Usart_FSM::sendValid()
@@ -104,7 +105,7 @@ bool Usart_FSM::sendLength()
 
 bool Usart_FSM::sendTail(Data &usrdat)
 {
-	if(state->sendTail())
+	if(state->sendSynChar())
 	{
 		usrdat = frame.dat;
 		return true;

@@ -6,7 +6,7 @@ WaitEtrState::WaitEtrState(Usart_FSM* pfsm) : usartFsm(pfsm)
 	return;
 }
 
-bool WaitEtrState::sendHead()
+bool WaitEtrState::sendSynChar()
 {
 	return false;	
 }
@@ -57,7 +57,3 @@ bool WaitEtrState::sendValid()
 	return false;
 }
 
-bool WaitEtrState::sendTail()
-{
-	return false;
-}

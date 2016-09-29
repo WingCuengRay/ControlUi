@@ -3,7 +3,7 @@
 using namespace std;
 bool Frame::Valid()
 {
-	uchar res = head ^ tail ^ length ^ dat.cmd;
+	uchar res = syn ^ syn ^ length ^ dat.cmd;
 	for(unsigned int i=0; i<dat.etr.size(); i++)
 		res ^= dat.etr[i];
 	

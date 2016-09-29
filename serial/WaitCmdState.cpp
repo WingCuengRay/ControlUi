@@ -4,9 +4,10 @@
 WaitCmdState::WaitCmdState(Usart_FSM *pfsm) : usartFsm(pfsm)
 {}
 
-bool WaitCmdState::sendHead()
+bool WaitCmdState::sendSynChar()
 {
-	return false;	
+	//usartFsm->setState(usartFsm->getIdleState());
+	return false;
 }
 
 bool WaitCmdState::sendLength()
@@ -19,15 +20,9 @@ bool WaitCmdState::sendCmd()
 	char ch;
 	if(usartFsm->com.recv_data(&ch, 1) == 1)
 	{
-		if (ch == usartFsm->frame.head)
+		if (ch == usartFsm->frame.syn)
 		{
-			//一旦收到帧头，立刻重新开始新帧的读取
-			usartFsm->setState(usartFsm->getWaitLenState());
-			return false;
-		}
-		else if(ch == usartFsm->frame.tail)
-		{
-			//此时收到帧尾，代表中间按字符有丢失，丢弃此帧并重新等待
+			//收到帧结束符，结束此帧的接收
 			usartFsm->setState(usartFsm->getIdleState());
 			return false;
 		}
@@ -52,11 +47,6 @@ bool WaitCmdState::sendExtra()
 }
 
 bool WaitCmdState::sendValid()
-{
-	return false;
-}
-
-bool WaitCmdState::sendTail()
 {
 	return false;
 }

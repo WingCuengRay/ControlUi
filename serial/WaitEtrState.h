@@ -9,15 +9,13 @@ class WaitEtrState : public State
 public:
 	WaitEtrState(Usart_FSM* pfsm);
 	
-	bool sendHead();
+	bool sendSynChar();
 	
 	bool sendLength();
 	bool sendCmd();
 	
 	bool sendExtra();
 	bool sendValid();
-	
-	bool sendTail();
 	
 	
 private:

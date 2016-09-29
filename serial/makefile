@@ -1,20 +1,25 @@
-obj := main.cpp SerialPort.cpp  Com.cpp table.cpp Frame.cpp Usart_FSM.cpp IdleState.cpp WaitLenState.cpp  WaitEtrState.cpp WaitCmdState.cpp WaitValidState.cpp WaitTailState.cpp 
-obj_fsm := fsm_drive.cpp SerialPort.cpp  Com.cpp table.cpp Frame.cpp Usart_FSM.cpp IdleState.cpp WaitLenState.cpp  WaitEtrState.cpp WaitCmdState.cpp WaitValidState.cpp WaitTailState.cpp 
+CC := g++-6
+CFLAGS := -std=c++11 -Wall -O2
+CFLAGS_DEBUG := -std=c++11 -Wall -g -D__DEBUG
+
+obj := main.o SerialPort.o  com.o table.o Frame.o Usart_FSM.o IdleState.o WaitLenState.o  \
+		WaitEtrState.o WaitCmdState.o WaitValidState.o WaitTailState.o 
+obj_fsm := fsm_drive.o SerialPort.o  com.o table.o Frame.o Usart_FSM.o IdleState.o WaitLenState.o  \
+		WaitEtrState.o WaitCmdState.o WaitValidState.o WaitTailState.o 
 
 all: $(obj)
 	clear
 	g++-6 -std=c++11 -o main $^
 	
 fsm: $(obj_fsm)
-	g++-6 -Wall -O2 -std=c++11 -o fsm $^
+	$(CC) $(CFLAGS) -o $@ $^
 	
 fsm_debug: $(obj_fsm)
 	clear
-	g++-6 -g -Wall -std=c++11 -D__DEBUG -o fsm $^
-
-
-test: serial.cpp
-	g++ -o serial $^
+	$(CC) $(CFLAGS_DEBUG) -o $@ $^
+	
+%.o: %.cpp
+	$(CC) $(CFLAGS_DEBUG) -c -o $@ $^
 	
 clean:
 	rm -f *.o main fsm

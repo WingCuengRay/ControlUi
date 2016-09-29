@@ -36,9 +36,7 @@ public:
 	
 	bool Valid();
 	
-	//使用不可打印字符当作帧头帧尾同步符
-	static const unsigned char head = 0x02; 
-	static const unsigned char tail = 0x03;
+	static const uchar syn = 0x7e;
 	unsigned char length;
 	Data dat;
 	unsigned char valid;

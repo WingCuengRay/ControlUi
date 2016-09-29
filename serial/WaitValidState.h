@@ -8,12 +8,12 @@ class WaitValidState : public State
 {
 public:
 	WaitValidState(Usart_FSM *pfsm);
-	bool sendHead();
+	bool sendSynChar();
 	bool sendLength();
 	bool sendCmd();
 	bool sendExtra();
 	bool sendValid();
-	bool sendTail();
+
 private:
 	std::shared_ptr<Usart_FSM> usartFsm; 
 };

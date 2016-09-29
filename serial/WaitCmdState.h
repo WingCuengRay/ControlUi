@@ -8,15 +8,13 @@ class WaitCmdState : public State
 {
 public:
 	WaitCmdState(Usart_FSM *pfsm);
-	bool sendHead();
+	bool sendSynChar();
 	
 	bool sendLength();
 	bool sendCmd();
 	
 	bool sendExtra();
 	bool sendValid();
-	
-	bool sendTail();
 	
 private:
 	std::shared_ptr<Usart_FSM> usartFsm; 

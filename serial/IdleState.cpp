@@ -4,10 +4,10 @@ using namespace std;
 IdleState::IdleState(Usart_FSM* pfsm) : usartFsm(pfsm)
 {}
 
-bool IdleState::sendHead()
+bool IdleState::sendSynChar()
 {
 #ifdef __DEBUG
-	cout << "IdleState::sendHead()\n";
+	cout << "IdleState::sendSynChar()\n";
 #endif
 	char ch;
 	if(usartFsm->com.recv_data(&ch, 1) == 1)
@@ -16,8 +16,7 @@ bool IdleState::sendHead()
 		cout << "ch: " <<  hex << (int)ch << endl;
 	#endif
 	
-		//空闲状态只有 前同步符 对其有意义 
-		if(ch == usartFsm->frame.head)
+		if(ch == usartFsm->frame.syn)
 		{
 			usartFsm->setState(usartFsm->getWaitLenState());
 			return true;
@@ -32,9 +31,10 @@ bool IdleState::sendHead()
 #ifdef __DEBUG
 	cout << "end of IdleState::sendHead()" << endl;
 #endif
-	
+
 	return false;
 }
+
 bool IdleState::sendLength()
 {
 	return false;
@@ -51,11 +51,6 @@ bool IdleState::sendExtra()
 }
 
 bool IdleState::sendValid()
-{
-	return false;
-}
-
-bool IdleState::sendTail()
 {
 	return false;
 }

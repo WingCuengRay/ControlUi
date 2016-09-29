@@ -9,12 +9,11 @@ class WaitTailState : public State
 public:
 	WaitTailState(Usart_FSM *pfsm);
 	
-	bool sendHead();
+	bool sendSynChar();
 	bool sendLength();
 	bool sendCmd();
 	bool sendExtra();
 	bool sendValid();
-	bool sendTail();
 	
 private:
 	std::shared_ptr<Usart_FSM> usartFsm; 
