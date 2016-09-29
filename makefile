@@ -7,10 +7,10 @@ CPP_SRC = $(wildcard ./*/*.cpp)
 CPP_OBJS = $(patsubst %cpp, %o, $(CPP_SRC))
 
 all: $(CPP_OBJS)
-	$(CC) $(CFLAGS_DEBUG) -o main $^
+	$(CC) $(CFLAGS) -o main $^
 
 %.o:%.cpp
-	$(CC) $(CFLAGS_DEBUG) -c -o $@ $^
+	$(CC) $(CFLAGS) -c -o $@ $^
 
 
 clean:
