@@ -45,14 +45,19 @@ int main(void)
 		cout << "Bind USART error." << endl;
 		return 0;
 	}
+	//initSysterm();
 
 #ifdef __DEBUG
-	char s[512];
+	cout << "Begin debug...\n";
+/**	
+	unsigned char s[512];
 	int ret = com1.recv_data(s, 512);
 	s[ret] = 0;
 	for(int i=0; i<ret; i++)
 		cout << hex << (unsigned int)s[i] << ' ';
 	cout << endl;
+**/
+	
 #endif
 
 	Usart_FSM *pfsm = new Usart_FSM(com1);
