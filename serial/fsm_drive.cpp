@@ -23,7 +23,7 @@ int main(void)
 	int ret = com1.recv_data(s, 512);
 	s[ret] = 0;
 	for(int i=0; i<ret; i++)
-		cout << hex << (int)s[i] << ' ';
+		cout << hex << (unsigned int)s[i] << ' ';
 	cout << endl;
 	
 	Usart_FSM *pfsm = new Usart_FSM(com1);

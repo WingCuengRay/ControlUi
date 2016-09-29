@@ -9,11 +9,11 @@ bool IdleState::sendSynChar()
 #ifdef __DEBUG
 	cout << "IdleState::sendSynChar()\n";
 #endif
-	char ch;
+	unsigned char ch;
 	if(usartFsm->com.recv_OneByte(&ch) == 1)
 	{
 	#ifdef __DEBUG
-		cout << "ch: " <<  hex << (int)ch << endl;
+		cout << "ch: " <<  hex << (unsigned int)ch << endl;
 	#endif
 	
 		if(ch == usartFsm->frame.syn)

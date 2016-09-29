@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Second" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/Second" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-std=c++11" />
+					<Add option="-g" />
+					<Add option="-DPLATFORM_WIN32" />
+					<Add directory="include" />
+					<Add directory="../Second" />
+					<Add directory="../UIProject_git" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/Second" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="include" />
+					<Add directory="../Second" />
+					<Add directory="../UIProject_git" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="DebugTool.cpp" />
+		<Unit filename="DebugTool.h" />
+		<Unit filename="DetailDefine.h" />
+		<Unit filename="EventAddMinus.cpp" />
+		<Unit filename="EventAddMinus.h" />
+		<Unit filename="EventBase.cpp" />
+		<Unit filename="EventBase.h" />
+		<Unit filename="EventManager.cpp" />
+		<Unit filename="EventManager.h" />
+		<Unit filename="EventUIMain.cpp" />
+		<Unit filename="EventUIMain.h" />
+		<Unit filename="GlobalFunction.cpp" />
+		<Unit filename="GlobalFunctionDeclaration.h" />
+		<Unit filename="ImfoManager.cpp" />
+		<Unit filename="ImfoManager.h" />
+		<Unit filename="MessageManager.cpp" />
+		<Unit filename="MessageManager.h" />
+		<Unit filename="Module.cpp" />
+		<Unit filename="Module.h" />
+		<Unit filename="SingletonClass.cpp" />
+		<Unit filename="SingletonClass.h" />
+		<Unit filename="SystermManager.cpp" />
+		<Unit filename="SystermManager.h" />
+		<Unit filename="TypeDefine.h" />
+		<Unit filename="UIBase.cpp" />
+		<Unit filename="UIBase.h" />
+		<Unit filename="UIContentBase.cpp" />
+		<Unit filename="UIContentBase.h" />
+		<Unit filename="UIContentFactory.cpp" />
+		<Unit filename="UIContentFactory.h" />
+		<Unit filename="UIContentItem.cpp" />
+		<Unit filename="UIContentItem.h" />
+		<Unit filename="UIMain.cpp" />
+		<Unit filename="UIMain.h" />
+		<Unit filename="UIManager.cpp" />
+		<Unit filename="UIManager.h" />
+		<Unit filename="UIPanel.cpp" />
+		<Unit filename="UIPanel.h" />
+		<Unit filename="UIRankAction.cpp" />
+		<Unit filename="UIRankAction.h" />
+		<Unit filename="UIRankActionBox.cpp" />
+		<Unit filename="UIRankActionBox.h" />
+		<Unit filename="UIRankFactory.cpp" />
+		<Unit filename="UIRankFactory.h" />
+		<Unit filename="UITool.cpp" />
+		<Unit filename="UITool.h" />
+		<Unit filename="main.cpp" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

@@ -33,7 +33,7 @@ public:
 	bool OpenCom();
 	bool bind();
 	int recv_data(char *buf, size_t len);
-	int recv_OneByte(char *buf);
+	int recv_OneByte(unsigned char *buf);
 	
 private:
 	int fd;

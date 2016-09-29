@@ -1,9 +1,0 @@
-clear
-[H[2Jg++-6 -std=c++11 -o main SerialPort.cpp main.cpp Com.cpp table.cpp Frame.cpp Usart_FSM.cpp IdleState.cpp WaitLenState.cpp WaitEtrState.cpp WaitCmdState.cpp WaitValidState.cpp WaitTailState.cpp
-SerialPort.cpp: In member function ‘virtual bool SerialPort::setConfiguration(int)’:
-SerialPort.cpp:43:5: warning: case label value exceeds maximum value for type
-     case 2 ://使用软件流控制
-     ^~~~
-SerialPort.cpp:33:8: warning: switch condition has boolean value [-Wswitch-bool]
-  switch(flow_ctrl)
-        ^

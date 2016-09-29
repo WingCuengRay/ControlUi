@@ -24,7 +24,7 @@ int Com::recv_data(char *buf, size_t len)
 	return ret;
 }
 
-int Com::recv_OneByte(char *buf)
+int Com::recv_OneByte(unsigned char *buf)
 {
 	int ret = read(fd, buf, 1);
 	if(ret == 1 && *buf==0x7d)

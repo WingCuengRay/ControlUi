@@ -17,7 +17,7 @@ bool WaitCmdState::sendLength()
 
 bool WaitCmdState::sendCmd()
 {
-	char ch;
+	unsigned char ch;
 	if(usartFsm->com.recv_OneByte(&ch) == 1)
 	{
 		if (ch == usartFsm->frame.syn)

@@ -29,7 +29,7 @@ bool WaitValidState::sendExtra()
 //
 bool WaitValidState::sendValid()
 {
-	char ch;
+	unsigned char ch;
 	if(usartFsm->com.recv_OneByte(&ch) == 1)
 	{
 		if (ch == usartFsm->frame.syn)

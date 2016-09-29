@@ -25,7 +25,7 @@ bool WaitTailState::sendValid()
 
 bool WaitTailState::sendSynChar()
 {
-	char ch;
+	unsigned char ch;
 	if(usartFsm->com.recv_OneByte(&ch) == 1)
 	{
 

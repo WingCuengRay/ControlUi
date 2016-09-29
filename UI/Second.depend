@@ -1,0 +1,419 @@
+# depslib dependency file v1.0
+1475056497 source:d:\uiconsoleproject\second\second\debugtool.cpp
+	"DebugTool.h"
+	<iostream>
+
+1475048903 d:\uiconsoleproject\second\second\debugtool.h
+	"SingletonClass.h"
+	<string>
+
+1475048768 d:\uiconsoleproject\second\second\singletonclass.h
+
+1474956708 source:d:\uiconsoleproject\second\second\eventaddminus.cpp
+	"EventAddMinus.h"
+
+1474958222 d:\uiconsoleproject\second\second\eventaddminus.h
+	"EventBase.h"
+
+1475036317 d:\uiconsoleproject\second\second\eventbase.h
+	"DetailDefine.h"
+
+1475103662 d:\uiconsoleproject\second\second\detaildefine.h
+
+1475044458 source:d:\uiconsoleproject\second\second\eventbase.cpp
+
+1475051680 source:d:\uiconsoleproject\second\second\eventmanager.cpp
+	"EventManager.h"
+	"GlobalFunctionDeclaration.h"
+	<string>
+	"DetailDefine.h"
+	"DebugTool.h"
+
+1475049087 d:\uiconsoleproject\second\second\eventmanager.h
+	"DetailDefine.h"
+	"EventBase.h"
+	"SingletonClass.h"
+	<map>
+
+1475055230 d:\uiconsoleproject\second\second\globalfunctiondeclaration.h
+
+1475030045 source:d:\uiconsoleproject\second\second\eventuimain.cpp
+	"EventUIMain.h"
+
+1475030081 d:\uiconsoleproject\second\second\eventuimain.h
+	"EventBase.h"
+
+1474945415 source:d:\uiconsoleproject\second\second\globalfunction.c
+
+1475109320 source:d:\uiconsoleproject\second\second\globalfunction.cpp
+	<fstream>
+	<string>
+	"DetailDefine.h"
+	"UIManager.h"
+	"ImfoManager.h"
+	"DebugTool.h"
+	"UITool.h"
+	"EventManager.h"
+	"UIContentFactory.h"
+	"UIRankFactory.h"
+
+1474938896 source:d:\uiconsoleproject\second\second\globalfunctiondeclaration.c
+
+1475108395 source:d:\uiconsoleproject\second\second\imfomanager.cpp
+	"ImfoManager.h"
+	"UIContentBase.h"
+	"DebugTool.h"
+	"UIContentFactory.h"
+
+1475106269 d:\uiconsoleproject\second\second\imfomanager.h
+	<vector>
+	<map>
+	"DetailDefine.h"
+	"SingletonClass.h"
+
+1475104520 d:\uiconsoleproject\second\second\uicontentbase.h
+	<string>
+	"DetailDefine.h"
+
+1475055239 source:d:\uiconsoleproject\second\second\main.cpp
+	<iostream>
+	"EventManager.h"
+	"DetailDefine.h"
+	"UIManager.h"
+	"GlobalFunctionDeclaration.h"
+
+1475107395 d:\uiconsoleproject\second\second\uimanager.h
+	<vector>
+	"SingletonClass.h"
+	"EventBase.h"
+
+1474948140 source:d:\uiconsoleproject\second\second\systermmanager.cpp
+	"SystermManager.h"
+
+1474948196 d:\uiconsoleproject\second\second\systermmanager.h
+	"SingletonClass.h"
+
+1475065553 source:d:\uiconsoleproject\second\second\uibase.cpp
+	"UIBase.h"
+	"UIRankAction.h"
+
+1475065042 d:\uiconsoleproject\second\second\uibase.h
+	<vector>
+	<map>
+	"EventBase.h"
+	"DetailDefine.h"
+	"UIContentBase.h"
+
+1475108024 source:d:\uiconsoleproject\second\second\uicontentbase.cpp
+	"UIContentBase.h"
+	"DebugTool.h"
+	"UIContentFactory.h"
+	"UITool.h"
+	<cstddef>
+
+1475036092 source:d:\uiconsoleproject\second\second\uicontentitem.cpp
+	"UIContentItem.h"
+	"DebugTool.h"
+
+1475035273 d:\uiconsoleproject\second\second\uicontentitem.h
+	"DetailDefine.h"
+	<vector>
+
+1475109715 source:d:\uiconsoleproject\second\second\uimain.cpp
+	"UIMain.h"
+	"EventManager.h"
+	"ImfoManager.h"
+	"DebugTool.h"
+	"UIRankAction.h"
+
+1475109374 d:\uiconsoleproject\second\second\uimain.h
+	<string>
+	<vector>
+	<map>
+	"UIBase.h"
+	"EventBase.h"
+	"DetailDefine.h"
+	"UIContentBase.h"
+
+1475107813 source:d:\uiconsoleproject\second\second\uimanager.cpp
+	"UIManager.h"
+	<cstddef>
+	"UIBase.h"
+	"ImfoManager.h"
+	"EventManager.h"
+	"DebugTool.h"
+	"UIMain.h"
+	"Module.h"
+	"UIRankFactory.h"
+
+1475021848 source:d:\uiconsoleproject\second\second\uipanel.cpp
+
+1475063479 source:d:\uiconsoleproject\second\second\uirankaction.cpp
+	"UIRankAction.h"
+	"UIContentBase.h"
+
+1475070684 d:\uiconsoleproject\second\second\uirankaction.h
+	<vector>
+
+1475070641 source:d:\uiconsoleproject\second\second\uirankactionbox.cpp
+	"UIRankActionBox.h"
+	"DebugTool.h"
+	"UIContentBase.h"
+	"UIRankFactory.h"
+
+1475104114 source:d:\uiconsoleproject\second\second\uitool.cpp
+	"UITool.h"
+	<iostream>
+
+1475106208 d:\uiconsoleproject\second\second\uitool.h
+	"SingletonClass.h"
+
+1475044620 source:d:\uiconsoleproject\second\second\singletonclass.cpp
+
+1475050411 source:d:\uiconsoleproject\second\second\module.cpp
+	"Module.h"
+
+1475050540 d:\uiconsoleproject\second\second\module.h
+
+1475069453 d:\uiconsoleproject\second\second\uicontentfactory.h
+	<map>
+	"DetailDefine.h"
+	"SingletonClass.h"
+	"UIContentBase.h"
+
+1475059629 source:d:\uiconsoleproject\second\second\uicontentfactory.cpp
+	"UIContentFactory.h"
+	"DebugTool.h"
+
+1475070568 d:\uiconsoleproject\second\second\uirankactionbox.h
+	<vector>
+	"UIRankAction.h"
+	"DetailDefine.h"
+
+1475070354 d:\uiconsoleproject\second\second\uirankfactory.h
+	<map>
+	"DetailDefine.h"
+	"SingletonClass.h"
+	"UIRankAction.h"
+
+1475071115 source:d:\uiconsoleproject\second\second\uirankfactory.cpp
+	"UIRankFactory.h"
+	"DebugTool.h"
+
+1475056497 source:d:\uiproject_git\debugtool.cpp
+	"DebugTool.h"
+	<iostream>
+
+1475048903 d:\uiproject_git\debugtool.h
+	"SingletonClass.h"
+	<string>
+
+1475048768 d:\uiproject_git\singletonclass.h
+
+1474956708 source:d:\uiproject_git\eventaddminus.cpp
+	"EventAddMinus.h"
+
+1474958222 d:\uiproject_git\eventaddminus.h
+	"EventBase.h"
+
+1475036317 d:\uiproject_git\eventbase.h
+	"DetailDefine.h"
+
+1475126996 d:\uiproject_git\detaildefine.h
+	<vector>
+
+1475044458 source:d:\uiproject_git\eventbase.cpp
+
+1475121343 source:d:\uiproject_git\eventmanager.cpp
+	"EventManager.h"
+	"GlobalFunctionDeclaration.h"
+	<string>
+	"DetailDefine.h"
+	"DebugTool.h"
+
+1475049087 d:\uiproject_git\eventmanager.h
+	"DetailDefine.h"
+	"EventBase.h"
+	"SingletonClass.h"
+	<map>
+
+1475130526 d:\uiproject_git\globalfunctiondeclaration.h
+	<string>
+
+1475030045 source:d:\uiproject_git\eventuimain.cpp
+	"EventUIMain.h"
+
+1475030081 d:\uiproject_git\eventuimain.h
+	"EventBase.h"
+
+1475130245 source:d:\uiproject_git\globalfunction.cpp
+	<fstream>
+	<string>
+	"DetailDefine.h"
+	"UIManager.h"
+	"ImfoManager.h"
+	"DebugTool.h"
+	"UITool.h"
+	"EventManager.h"
+	"UIContentFactory.h"
+	"UIRankFactory.h"
+	"MessageManager.h"
+
+1475127197 d:\uiproject_git\uimanager.h
+	<vector>
+	"SingletonClass.h"
+	"EventBase.h"
+
+1475106269 d:\uiproject_git\imfomanager.h
+	<vector>
+	<map>
+	"DetailDefine.h"
+	"SingletonClass.h"
+
+1475112827 d:\uiproject_git\uitool.h
+	"SingletonClass.h"
+
+1475069453 d:\uiproject_git\uicontentfactory.h
+	<map>
+	"DetailDefine.h"
+	"SingletonClass.h"
+	"UIContentBase.h"
+
+1475114646 d:\uiproject_git\uicontentbase.h
+	<string>
+	"DetailDefine.h"
+
+1475070354 d:\uiproject_git\uirankfactory.h
+	<map>
+	"DetailDefine.h"
+	"SingletonClass.h"
+	"UIRankAction.h"
+
+1475118728 d:\uiproject_git\uirankaction.h
+	<vector>
+
+1475127891 source:d:\uiproject_git\imfomanager.cpp
+	"ImfoManager.h"
+	"UIContentBase.h"
+	"DebugTool.h"
+	"UIContentFactory.h"
+
+1475055239 source:d:\uiproject_git\main.cpp
+	<iostream>
+	"EventManager.h"
+	"DetailDefine.h"
+	"UIManager.h"
+	"GlobalFunctionDeclaration.h"
+
+1475050411 source:d:\uiproject_git\module.cpp
+	"Module.h"
+
+1475050540 d:\uiproject_git\module.h
+
+1475044620 source:d:\uiproject_git\singletonclass.cpp
+
+1474948140 source:d:\uiproject_git\systermmanager.cpp
+	"SystermManager.h"
+
+1474948196 d:\uiproject_git\systermmanager.h
+	"SingletonClass.h"
+
+1475129475 source:d:\uiproject_git\uibase.cpp
+	"UIBase.h"
+	"UIRankAction.h"
+
+1475129411 d:\uiproject_git\uibase.h
+	<vector>
+	<map>
+	"EventBase.h"
+	"DetailDefine.h"
+	"UIContentBase.h"
+
+1475114169 source:d:\uiproject_git\uicontentbase.cpp
+	"UIContentBase.h"
+	"DebugTool.h"
+	"UIContentFactory.h"
+	"UITool.h"
+	<cstddef>
+
+1475059629 source:d:\uiproject_git\uicontentfactory.cpp
+	"UIContentFactory.h"
+	"DebugTool.h"
+
+1475036092 source:d:\uiproject_git\uicontentitem.cpp
+	"UIContentItem.h"
+	"DebugTool.h"
+
+1475035273 d:\uiproject_git\uicontentitem.h
+	"DetailDefine.h"
+	<vector>
+
+1475130540 source:d:\uiproject_git\uimanager.cpp
+	"UIManager.h"
+	<cstddef>
+	"UIBase.h"
+	"ImfoManager.h"
+	"EventManager.h"
+	"DebugTool.h"
+	"UIMain.h"
+	"Module.h"
+	"UIRankFactory.h"
+	"DetailDefine.h"
+	"GlobalFunctionDeclaration.h"
+
+1475114680 d:\uiproject_git\uimain.h
+	<string>
+	<vector>
+	<map>
+	"UIBase.h"
+	"EventBase.h"
+	"DetailDefine.h"
+	"UIContentBase.h"
+
+1475021848 source:d:\uiproject_git\uipanel.cpp
+
+1475118717 source:d:\uiproject_git\uirankaction.cpp
+	"UIRankAction.h"
+	"UIContentBase.h"
+
+1475118277 source:d:\uiproject_git\uirankactionbox.cpp
+	"UIRankActionBox.h"
+	"DebugTool.h"
+	"UIContentBase.h"
+	"UIRankFactory.h"
+
+1475070568 d:\uiproject_git\uirankactionbox.h
+	<vector>
+	"UIRankAction.h"
+	"DetailDefine.h"
+
+1475071115 source:d:\uiproject_git\uirankfactory.cpp
+	"UIRankFactory.h"
+	"DebugTool.h"
+
+1475112882 source:d:\uiproject_git\uitool.cpp
+	"UITool.h"
+	<iostream>
+
+1475128036 source:d:\uiproject_git\uimain.cpp
+	"UIMain.h"
+	"EventManager.h"
+	"ImfoManager.h"
+	"DebugTool.h"
+	"UIRankAction.h"
+	"UITool.h"
+	"UIManager.h"
+
+1475130326 source:d:\uiproject_git\messagemanager.cpp
+	"MessageManager.h"
+	"DetailDefine.h"
+	"DebugTool.h"
+	"EventManager.h"
+	"GlobalFunctionDeclaration.h"
+	"DebugTool.h"
+
+1475127808 d:\uiproject_git\messagemanager.h
+	"SingletonClass.h"
+	"DetailDefine.h"
+	<vector>
+

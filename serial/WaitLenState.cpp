@@ -11,7 +11,7 @@ bool WaitLenState::sendSynChar()
 
 bool WaitLenState::sendLength()
 {
-	char ch;
+	unsigned char ch;
 	
 	//任何数字都可能成为长度（包括同步符代表的数字），只要不为 0 即进入对命令的接收
 	if(usartFsm->com.recv_OneByte(&ch)==1 && ch!=0)

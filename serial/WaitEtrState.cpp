@@ -26,20 +26,19 @@ bool WaitEtrState::sendCmd()
 //
 bool WaitEtrState::sendExtra()
 {
-	char ch;
+	unsigned char ch;
 	vector<uchar> tmp;
 	
 	//接收额外数据，由 length 字段确定其长度
 	for(size_t i=usartFsm->frame.length-1; i!=0; )
 	{
-		// 数据字段的字符若出现 前同步符 与 尾同步符，则不去理会
-		// 后期可以处理额外数据中的 同步符
-		if(usartFsm->com.recv_OneByte(&ch) == 1)
+		// 处理额外数据中的 同步符，同步符所代表的数据为 0x5C+同步符
+		if(usartFsm->com.recv_OneByte(&ch)==1 && ch!=0x7E)
 		{
 			// 接收转义字符及其后面的字符
 			if(ch == '\\')
 			{
-				if(usartFsm->recv_OneByte(&ch) != 1)
+				if(usartFsm->com.recv_OneByte(&ch) != 1)
 					return false;
 			}
 				
