@@ -19,7 +19,7 @@ fsm_debug: $(obj_fsm)
 	$(CC) $(CFLAGS_DEBUG) -o $@ $^
 	
 %.o: %.cpp
-	$(CC) $(CFLAGS_DEBUG) -c -o $@ $^
+	$(CC) $(CFLAGS) -c -o $@ $^
 	
 clean:
 	rm -f *.o main fsm

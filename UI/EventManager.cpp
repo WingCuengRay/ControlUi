@@ -53,6 +53,6 @@ void EventManager::sendEvent(EventID eventID,VarList varList)
     else
     {
         globalWriteFile(WriteDirection::DirectionError,eventID);
-        debugTool->outputString("can't find event processor");
+        debugTool->outputString("can't find event processor\n");
     }
 }

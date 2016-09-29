@@ -4,6 +4,7 @@
 
 #define TOCHARARRAY(para) #para
 #include<vector>
+#include "../serial/Frame.h"
 using std::vector;
 
 enum class EventType//事件类型
@@ -116,6 +117,7 @@ enum ChangeValueType
 //    DataTypeMax,
 //};
 
+/**
 typedef unsigned char uchar;
 struct Data
 {
@@ -130,5 +132,6 @@ struct Data
 	unsigned char cmd;
 	std::vector<uchar> etr;
 };
+**/
 
 #endif

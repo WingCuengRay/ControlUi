@@ -74,8 +74,9 @@ std::string EventIDToString(EventID eventID)
 
 
 
-#define EventFileName TOCHARARRAY(D:\\WriteTemp\\Event.txt)
-#define ErrorFileName TOCHARARRAY(D:\\WriteTemp\\Error.txt)
+// bug! Linux ÏÂ´íÎó
+#define EventFileName TOCHARARRAY(./Event.txt)
+#define ErrorFileName TOCHARARRAY(./Error.txt)
 static void writeFile(const std::string &fileName,const EventID &EventID)
 {
 

@@ -17,23 +17,27 @@ MessageManager::~MessageManager()
 
 void MessageManager::sendMessage(Data data)
 {
-    if(data.cmd > (int)EventDetail::DetailMax
-       && data.cmd < (int)EventDetail::DetailInvalid)
+	//bug!!!  DetailMax 为 enum 无制定值
+	//DetailMax = 8, DetailInvaild = 0
+    if(data.cmd > (int)EventDetail::DetailInvalid
+       && data.cmd < (int)EventDetail::DetailMax)
     {
         vecMessage.push_back(data);
     }
     else
     {
         DebugTool *debugTool = DebugTool::getSingleton();
-        debugTool->outputString("MessageManager::sendMessage message datat invalid\n");
+		//debugTool->outputString("MessageManager::sendMessage message datat invalid\n");
+        debugTool->outputString(string("MessageManager::sendMessage message datat invalid\n") + string("Max: ") + std::to_string((int)EventDetail::DetailMax));
     }
 }
 void MessageManager::update(float deltaTime)
 {
     static int timeCount = 0;
-    static const int timeWait = 1;
+    static const int timeWait = 0;			//bug! deltaTime 是 float，这里是 int!?
     timeCount += deltaTime;
 
+	
     if(timeCount < timeWait)
         return ;
     timeCount -= timeWait;
@@ -44,8 +48,8 @@ void MessageManager::update(float deltaTime)
     while(ite != vecMessage.end())
     {
         Data data = *ite;
-        if(data.cmd > (int)EventDetail::DetailMax
-           && data.cmd < (int)EventDetail::DetailInvalid)
+        if(data.cmd > (int)EventDetail::DetailInvalid
+           && data.cmd < (int)EventDetail::DetailMax )
         {
             isSolveOne = true;
             EventID eventID(EventType::EventTypeRecievePrimaryData,
