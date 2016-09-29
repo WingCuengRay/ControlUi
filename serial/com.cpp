@@ -20,7 +20,18 @@ bool Com::bind()
 int Com::recv_data(char *buf, size_t len)
 {
 	int ret = read(fd, buf, len);
-//	if(ret >= 0)
-//		buf[ret] = 0;
+
+	return ret;
+}
+
+int Com::recv_OneByte(char *buf)
+{
+	int ret = read(fd, buf, 1);
+	if(ret == 1 && *buf==0x7d)
+	{
+		ret = read(fd, buf, 1);
+		*buf ^= 0x20;		//遇到转义字符 '7d' 将其后面第一个字符的第六位取反
+	}
+	
 	return ret;
 }

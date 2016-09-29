@@ -34,8 +34,15 @@ bool WaitEtrState::sendExtra()
 	{
 		// 数据字段的字符若出现 前同步符 与 尾同步符，则不去理会
 		// 后期可以处理额外数据中的 同步符
-		if(usartFsm->com.recv_data(&ch, 1) == 1)
+		if(usartFsm->com.recv_OneByte(&ch) == 1)
 		{
+			// 接收转义字符及其后面的字符
+			if(ch == '\\')
+			{
+				if(usartFsm->recv_OneByte(&ch) != 1)
+					return false;
+			}
+				
 			tmp.push_back(ch);
 			i--;
 		}

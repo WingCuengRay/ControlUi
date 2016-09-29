@@ -30,7 +30,7 @@ bool WaitValidState::sendExtra()
 bool WaitValidState::sendValid()
 {
 	char ch;
-	if(usartFsm->com.recv_data(&ch, 1) == 1)
+	if(usartFsm->com.recv_OneByte(&ch) == 1)
 	{
 		if (ch == usartFsm->frame.syn)
 		{
@@ -40,6 +40,13 @@ bool WaitValidState::sendValid()
 		}
 		else
 		{
+			//转义字符，用于使转义 '\' 后的字符失去含义(同步符)
+			if(ch == '\\' )			//0x5c
+			{
+				// 转义字符后的字符接收失败
+				if(usartFsm->com.recv_OneByte(&ch) != 1)
+					return false;
+			}
 			usartFsm->frame.valid = ch;
 			usartFsm->setState(usartFsm->getWaitTailState());
 			return true;

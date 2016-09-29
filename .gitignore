@@ -1,3 +1,7 @@
 *.exe.*
+*.o
 *.exe
 *.txt
+fsm
+main
+.log

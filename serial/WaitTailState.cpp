@@ -26,7 +26,7 @@ bool WaitTailState::sendValid()
 bool WaitTailState::sendSynChar()
 {
 	char ch;
-	if(usartFsm->com.recv_data(&ch, 1) == 1)
+	if(usartFsm->com.recv_OneByte(&ch) == 1)
 	{
 
 		//收到帧同步符，判断 valid 是否正确并跳转至相应状态

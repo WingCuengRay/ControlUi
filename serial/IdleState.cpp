@@ -10,7 +10,7 @@ bool IdleState::sendSynChar()
 	cout << "IdleState::sendSynChar()\n";
 #endif
 	char ch;
-	if(usartFsm->com.recv_data(&ch, 1) == 1)
+	if(usartFsm->com.recv_OneByte(&ch) == 1)
 	{
 	#ifdef __DEBUG
 		cout << "ch: " <<  hex << (int)ch << endl;
