@@ -3,7 +3,7 @@
 #include"UIContentFactory.h"
 #include"UITool.h"
 #include<cstddef>
-
+#include"EventManager.h"
 /*---------------------------------------------
 * UIContentString
 *---------------------------------------------*/
@@ -39,8 +39,50 @@ void UIContentString::changeValue(ChangeValueType type)
 {
     switch(type)
     {
-    case ChangeValueType::Clear:
+    case ChangeValueType::ChangeValueTypeClear:
         content.clear();
+        break;
+    case ChangeValueType::ChangeValueTypeBigger:
+    case ChangeValueType::ChangeValueTypeSmaller:
+        changeValueWhenUIPanelName(type);
+        break;
+    }
+}
+
+static void sendEventShowUI(EventType type)
+{
+    EventID eventID(type,EventDetail::DetailShowUI);
+    EventManager *eventManger = EventManager::getSingleton();
+    VarList temp;
+    eventManger->sendEvent(eventID,temp);
+}
+void UIContentString::changeValueWhenUIPanelName(ChangeValueType type)
+{
+    bool right = false;
+    DebugTool *debugTool = DebugTool::getSingleton();
+    debugTool->outputString(content.c_str());
+    right = right || (content == "Panel");
+    right = right || (content == "Picture");
+    right = right || (content == "Sound");
+    right = right || (content == "Main");
+    string temp = content;
+    if(!right)
+        return ;
+    switch(type)
+    {
+    case ChangeValueType::ChangeValueTypeBigger:
+        if(content == "Panel")
+            sendEventShowUI(EventType::EventTypePanel);
+        else if(content == "Picture")
+            sendEventShowUI(EventType::EventTypePicture);
+        else if(content == "Sound")
+            sendEventShowUI(EventType::EventTypeSound);
+        break;
+    case ChangeValueType::ChangeValueTypeClear:
+        break;
+    case ChangeValueType::ChangeValueTypeSmaller:
+        if(content == "Main")
+            sendEventShowUI(EventType::EventTypeMain);
         break;
     }
 }
@@ -65,7 +107,7 @@ void UIContentInt::setValue(void *newValue)
 }
 UIContentBase* UIContentInt::create()
 {
-    return new UIContentInt;//²»»á·µ»ØNULL
+    return new UIContentInt;
 }
 
 const UIContentInt UIContentInt::operator=(const UIContentInt &second)
@@ -77,17 +119,18 @@ void UIContentInt::changeValue(ChangeValueType type)
 {
     switch(type)
     {
-    case ChangeValueType::Bigger:
+    case ChangeValueType::ChangeValueTypeBigger:
         content++;
         break;
-    case ChangeValueType::Smaller:
+    case ChangeValueType::ChangeValueTypeSmaller:
         content--;
         break;
-    case ChangeValueType::Clear:
+    case ChangeValueType::ChangeValueTypeClear:
         content = 0;
         break;
     }
 }
+
 REGISTEREVENT_UICONTENT_TYPE(ContentType::ContentInt,UIContentInt)
 
 
@@ -122,8 +165,8 @@ void UIContentBool::changeValue(ChangeValueType type)
 {
     switch(type)
     {
-    case ChangeValueType::Bigger:
-    case ChangeValueType::Smaller:
+    case ChangeValueType::ChangeValueTypeBigger:
+    case ChangeValueType::ChangeValueTypeSmaller:
         content = !content;
         break;
     }

@@ -1,6 +1,7 @@
 #include "DebugTool.h"
 #include<iostream>
 using std::cout;
+using std::endl;
 
 
 DebugTool::DebugTool():SingleatonClass<DebugTool>()
@@ -23,4 +24,8 @@ void DebugTool::outputString(const string para)
 void DebugTool::initSingleton()
 {
 
+}
+void DebugTool::newOutput(const string para)
+{
+    cout << para << endl;
 }

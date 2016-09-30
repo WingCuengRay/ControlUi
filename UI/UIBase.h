@@ -23,11 +23,21 @@ public:
     virtual void show() = 0;
     virtual bool initUI(PageType pageTypePara) = 0;
 public:
-    virtual void setRankAndContent(UIRankAction *rankActionPara,VecContentPageType &pageContentPara);
+    virtual void setRankAndContent(UIRankAction *rankActionPara,UIContentBase* signContent,VecContentPageType &pageContentPara);
+
+    void setIndex(int );
+    int getIndex();
+    PageType getPageType();
+protected:
+    EventType pageTypeToEventType(PageType type);
 protected:
     VecContentPageType pageContent;
     UIRankAction *rankAction;
     int index;
+    PageType pageType;
+    UIContentBase*signContent;
+    int signX;
+    int signY;
 };
 
 #endif // UIBASE_H

@@ -5,6 +5,7 @@
 #include"UIRankAction.h"
 #include"UITool.h"
 #include"UIManager.h"
+#include <curses.h>
 
 UIMain::UIMain()
 {
@@ -26,17 +27,30 @@ bool UIMain::init(PageType pageTypePara)
 
 }
 
+
+
 void UIMain::show()
 {
     DebugTool *debugTool = DebugTool::getSingleton();
-    debugTool->outputString("UIMain::show\n");
+//    debugTool->outputString("UIMain::show\n");
     UITool *uiTool = UITool::getSingleton();
-    uiTool->refresh();
+	uiTool->clearWindow();
+	uiTool->refresh();
+    
 
     rankAction->show();
+	uiTool->refresh();
+    SizeBox sizeBox;
+    sizeBox.topLeftX = signX;
+    sizeBox.topLeftY = signY;
+    signContent->show(sizeBox);
+	uiTool->refresh();
+
 
     UIManager *uiManager = UIManager::getSingleton();
-    uiManager->setPageType(this->pageType);
+    uiManager->setCurrentUI(this);
+
+    //uiTool->refresh();
 }
 
 bool UIMain::initUI(PageType pageTypePara)
@@ -62,17 +76,8 @@ void UIMain::processEvent(EventID eventID,VarList varList)
     {
     case EventType::EventTypeInvalid:
         break;
-    case EventType::EventTypeMain:
+    default:
         processEventMain(eventID,varList);
-        break;
-    case EventType::EventTypePanel:
-        processEventPanel(eventID,varList);
-        break;
-    case EventType::EventTypePicture:
-        processEventPicture(eventID,varList);
-        break;
-    case EventType::EventTypeSound:
-        processEvent(eventID,varList);
         break;
     }
 }
@@ -88,7 +93,9 @@ void UIMain::processEventMain(EventID eventID,VarList varList)
     case EventDetail::DetailChangeValue:
         changeValue(eventID,varList);
         break;
-    case EventDetail::DetailGoAhead:
+    case EventDetail::DetailTurnUp:
+    case EventDetail::DetailTurnDown:
+        turnUpDown(eventID,varList);
         break;
     }
 }
@@ -160,21 +167,28 @@ void UIMain::releaseEvent()
 {
 
 }
-
-EventType UIMain::pageTypeToEventType(PageType type)
+void UIMain::turnUpDown(EventID eventID,VarList varList)
 {
-    switch(type)
+    DebugTool *debugTool = DebugTool::getSingleton();
+    debugTool->outputString("UIMain::turnUpDown    ");
+    switch(eventID.detail)
     {
-    case PageType::PageMain:
-        return EventType::EventTypeMain;
-    case PageType::PagePanel:
-        return EventType::EventTypePanel;
-    case PageType::PagePicture:
-        return EventType::EventTypePicture;
-    case PageType::PageSound:
-        return EventType::EventTypeSound;
-    default:
-        return EventType::EventTypeInvalid;
+    case EventDetail::DetailTurnUp:
+        if(index < pageContent.size() - 1)
+        {
+            index++;
+            signY = rankAction->getLineY(index);
+        }
+        show();
+        break;
+    case EventDetail::DetailTurnDown:
+        if(index > 2)
+        {
+            index--;
+            signY = rankAction->getLineY(index);
+        }
+        show();
+        break;
     }
 }
 void UIMain::changeValue(EventID eventID,VarList varList)
@@ -196,5 +210,5 @@ void UIMain::changeValue(EventID eventID,VarList varList)
             iteContent++;
         }
     }
-    show();
+    //show();
 }

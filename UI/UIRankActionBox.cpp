@@ -44,15 +44,15 @@ UIRankAction* UIRankActionBoxWithTitle::create()
 
 void UIRankActionBoxWithTitle::initRankAction()
 {
-    int highRow = 100;
-    int highColumn = 300;
-    int firstRow = 100;
-    int firstColumn = 100;
+    int highRow = 3;
+    int highColumn = 20;
+    int firstRow = 5;
+    int firstColumn = 5;
     SizeBox temp;
     temp.topLeftX = firstRow;
     temp.topLeftY = firstColumn;
     vecRank.push_back(temp);
-    for(int row = 0;row < 4;row++)
+    for(int row = 0;row < 6;row++)
     {
         for(int column = 0;column < 2;column++)
         {
@@ -65,6 +65,24 @@ void UIRankActionBoxWithTitle::initRankAction()
     debugTool->outputString("UIRankActionBoxWithTitle::initRankAction \n");
 }
 
-
-
+int UIRankActionBoxWithTitle::getLineX(int num)
+{
+    if(num > vecRank.size() * 2)
+        return 0;
+    int position = num * 2;
+    if(num > 1)
+        position -= num - 1;
+    SizeBox temp = vecRank[position];
+    return temp.topLeftX;
+}
+int UIRankActionBoxWithTitle::getLineY(int num)
+{
+    if(num > vecRank.size() * 2)
+        return 0;
+    int position = num * 2;
+    if(num > 1)
+        position -= num - 1;
+    SizeBox temp = vecRank[position];
+    return temp.topLeftY;
+}
 REGISTEREVENT_RANK_TYPE(RankType::RankBox,UIRankActionBoxWithTitle);

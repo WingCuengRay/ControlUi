@@ -38,12 +38,15 @@ public://virtual
     virtual bool initEvent();
     virtual void releaseEvent();
 private:
-    EventType pageTypeToEventType(PageType type);
+
     void changeValue(EventID,VarList);
+    void turnUpDown(EventID,VarList);
+
 private:
     //todo detail content
-    PageType pageType;
+
     EventType pageEventType;
+    int itemNum;
 
 };
 

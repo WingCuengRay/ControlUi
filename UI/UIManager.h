@@ -23,13 +23,16 @@ public://virtual
     virtual void initSingleton();
     void setMainPage();
     void setPicturePage();
-    void setPageType(PageType type);
+    void setSoundPage();
+    void setPanelPage();
+    void setCurrentUI(UIBase*);
 private:
     EventType pageTypeToEventType(PageType type);
     EventDetail intToEventDetail(int );
+    EventDetail coutEventDetail(int);
 private:
     vector<UIBase *> uiPages;
-    PageType pageType;
+    UIBase* currentUI;
 };
 
 #endif // UIMANAGER_H

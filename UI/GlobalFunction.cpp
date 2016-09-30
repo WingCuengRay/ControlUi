@@ -3,6 +3,7 @@
 
 #include<fstream>
 #include<string>
+#include <curses.h>
 #include"DetailDefine.h"
 #include"UIManager.h"
 #include"ImfoManager.h"
@@ -12,6 +13,7 @@
 #include"UIContentFactory.h"
 #include"UIRankFactory.h"
 #include"MessageManager.h"
+
 
 //将事件的ID转换为连续的字符串
 std::string EventIDToString(EventID eventID)
@@ -39,8 +41,8 @@ std::string EventIDToString(EventID eventID)
     switch(eventID.detail)
     {
     //case EventDetail::DetailFirst:
-    //   ret += TOCHARARRAY(EventDetail::DetailFirst);
-    //   break;
+     //   ret += TOCHARARRAY(EventDetail::DetailFirst);
+      //  break;
     case EventDetail::DetailChangeValue:
         ret += TOCHARARRAY(EventDetail::DetailChangeValue);
         break;
@@ -74,9 +76,8 @@ std::string EventIDToString(EventID eventID)
 
 
 
-// bug! Linux 下错误
-#define EventFileName TOCHARARRAY(./Event.txt)
-#define ErrorFileName TOCHARARRAY(./Error.txt)
+#define EventFileName TOCHARARRAY(D:\\WriteTemp\\Event.txt)
+#define ErrorFileName TOCHARARRAY(D:\\WriteTemp\\Error.txt)
 static void writeFile(const std::string &fileName,const EventID &EventID)
 {
 
@@ -128,10 +129,20 @@ bool operator<(const EventID &left,const EventID &right)
     }
     return false;
 }
-
+ChangeValueType intToChangeValueType(int num)
+{
+    int typeMin = (int)ChangeValueType::ChangeValueTypeInvilid;
+    int typeMax = (int)ChangeValueType::ChangeValueTypeMax;
+    if(num < typeMin
+       || num > typeMax)
+        num = typeMin;
+    return (ChangeValueType)num;
+}
 
 void initSysterm()
 {
+    initscr();
+
     EventManager *eventManager = EventManager::getSingleton();
     eventManager->initSingleton();
 
@@ -152,27 +163,21 @@ void initSysterm()
     uiManager->initSingleton();
 }
 
-
-void TestSomthing()
+void TestMain()
 {
-    EventID eventID(EventType::EventTypeMain,EventDetail::DetailChangeValue);
-    VarList varList;
-    varList.setNum(1);
-    varList.setSign(int(ChangeValueType::Bigger));
-    EventManager *eventManger = EventManager::getSingleton();
-    eventManger->sendEvent(eventID,varList);
-
-
-    eventID.type = EventType::EventTypeRecievePrimaryData;
-    eventID.detail = EventDetail::DetailReceivedData;
-    varList.setNum(2);
-    eventManger->sendEvent(eventID,varList);
-
-
     Data data;
-    data.cmd = 3;
+    data.cmd = 1;
     MessageManager *messageManager = MessageManager::getSingleton();
     messageManager->sendMessage(data);//--------------
     messageManager->update();//------------------------
+
 }
+void TestSomthing()
+{
+
+    TestMain();
+
+
+}
+
 #endif // _GLOBALFUNCTION_H_

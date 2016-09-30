@@ -27,6 +27,8 @@ public:
     virtual UIContentBase* create();
     virtual void changeValue(ChangeValueType);
 private:
+    void changeValueWhenUIPanelName(ChangeValueType);
+private:
     std::string content;
 
     const UIContentString operator=(const UIContentString &second);

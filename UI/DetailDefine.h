@@ -102,9 +102,13 @@ enum class PageType
 
 enum ChangeValueType
 {
-    Bigger,
-    Smaller,
-    Clear,
+    ChangeValueTypeInvilid,
+    ChangeValueTypeBigger,
+    ChangeValueTypeSmaller,
+    ChangeValueTypeTurnUp,
+    ChangeValueTypeTurnDown,
+    ChangeValueTypeClear,
+    ChangeValueTypeMax,
 };
 
 //enum class DataType
@@ -117,21 +121,6 @@ enum ChangeValueType
 //    DataTypeMax,
 //};
 
-/**
-typedef unsigned char uchar;
-struct Data
-{
-	Data(uchar * s = 0) : cmd(0)
-	{
-		//¸³Öµ¸ø etr
-		if(s == 0)
-			return;
-		for(int i=0; s[i]!=0; i++)
-			etr.push_back(s[i]);
-	}
-	unsigned char cmd;
-	std::vector<uchar> etr;
-};
-**/
+
 
 #endif

@@ -1,11 +1,14 @@
 #include "Usart_FSM.h"
 #include "Frame.h"
+#include <fstream>
 
 #include "../UI/MessageManager.h"
 #include "../UI/EventManager.h"
 #include "../UI/DetailDefine.h"
 #include "../UI/UIManager.h"
 #include "../UI/GlobalFunctionDeclaration.h"
+
+#include <curses.h>
 
 using namespace std;
 
@@ -31,6 +34,7 @@ int cntCorrectTime(Usart_FSM *pfsm)
 
 int main(void)
 {
+	initSysterm();
 	SerialPort port1(115200);
 	Com com1("/dev/ttyS0", make_shared<SerialPort>(port1));
 	
@@ -45,10 +49,17 @@ int main(void)
 		cout << "Bind USART error." << endl;
 		return 0;
 	}
-	//initSysterm();
 
-#ifdef __DEBUG
-	cout << "Begin debug...\n";
+	fstream fout1("debug.log", ios::out);
+#ifdef __DEBUG_MAIN
+	
+	if(!fout1.is_open())
+	{
+		cout << "File open error.\n";
+		throw "debug.log open error.\n";
+	}
+		
+	fout1 << "Begin debug...\n";
 /**	
 	unsigned char s[512];
 	int ret = com1.recv_data(s, 512);
@@ -63,8 +74,8 @@ int main(void)
 	Usart_FSM *pfsm = new Usart_FSM(com1);
 	// 串口丢包率测试函数
 	// cntCorrectTime(pfsm);
-#ifdef __DEBUG
-	cout << "FSM starting.\n";
+#ifdef __DEBUG_MAIN
+	fout1 << "FSM starting.\n";
 #endif
 
 	
@@ -73,21 +84,24 @@ int main(void)
 	{
 		if(pfsm->drive(usrdat))
 		{
-		#ifdef __DEBUG
-			cout << "cmd:\t" << hex << (int)usrdat.cmd << endl;
-			cout << "extra:\t";
+		#ifdef __DEBUG_MAIN
+			fout1 << "cmd:\t" << hex << (int)usrdat.cmd << endl;
+			fout1 << "extra:\t";
 			for(auto it=usrdat.etr.cbegin(); it!=usrdat.etr.cend(); it++)
-				cout << hex << (int)(*it) << ' ';
-			cout << endl;
+				fout1 << hex << (int)(*it) << ' ';
+			fout1 << endl;
+			fout1.flush();
 		#endif
 		
 		//不需要初始化，注册事件？
-		//MessageManager *messageManager = MessageManager::getSingleton();
-		//messageManager->sendMessage(usrdat);
-		//messageManager->update();
+		MessageManager *messageManager = MessageManager::getSingleton();
+		messageManager->sendMessage(usrdat);
+		messageManager->update();
 		//cout << "Running MessageManager.\n" << endl;
 		}
 	}
 		
+	fout1.close();
+	endwin();
 	return 0;
 }

@@ -32,10 +32,15 @@ public:
 private:
     void setMainPage();
     void setMainPageEventID();
+
     void setPicturePage();
     void setPictureEventID();
+
     void setPanelPage();
     void setPanelPageEventID();
+
+    void setSoundPage();
+    void setSoundPageEventID();
 private:
     MapPageTypeContent mapPageContents;
     MapPageEventID pageEventID;

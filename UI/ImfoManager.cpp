@@ -18,6 +18,10 @@ void ImfoManager::initSingleton()
     setMainPageEventID();
     setPicturePage();
     setPictureEventID();
+    setPanelPage();
+    setPanelPageEventID();
+    setSoundPage();
+    setSoundPageEventID();
 }
 
 
@@ -46,28 +50,60 @@ void ImfoManager::setMainPage()
 
     UIContentFactory *contentFactory = UIContentFactory::getSingleton();
 
-    UIContentBase* pValue1 = contentFactory->create(ContentType::ContentInt);
-    UIContentBase* pValue2 = contentFactory->create(ContentType::ContentString);
-    UIContentBase* pValue3 = contentFactory->create(ContentType::ContentBool);
-    VecContentItemType firstItem,secondItem,threeItem;
+    UIContentBase* pValueTitle = contentFactory->create(ContentType::ContentString);
+    UIContentBase* pValueName = contentFactory->create(ContentType::ContentString);
+    UIContentBase* pValueFunc = contentFactory->create(ContentType::ContentString);
+    UIContentBase* pValue11 = contentFactory->create(ContentType::ContentString);
+    UIContentBase* pValue12 = contentFactory->create(ContentType::ContentString);
+    UIContentBase* pValue21 = contentFactory->create(ContentType::ContentString);
+    UIContentBase* pValue22 = contentFactory->create(ContentType::ContentString);
+    UIContentBase* pValue31 = contentFactory->create(ContentType::ContentString);
+    UIContentBase* pValue32 = contentFactory->create(ContentType::ContentString);
+    UIContentBase* pValue41 = contentFactory->create(ContentType::ContentString);
+    UIContentBase* pValue42 = contentFactory->create(ContentType::ContentBool);
+
+
+    string title("Main Page");
+    string name("Name");
+    string func("Function");
+    string content11("Picture"),content12(">>>");
+    string content21("Panel"),content22(">>>");
+    string content31("Sound"),content32(">>>");
+    string content41("Debug");
+    bool content42(false);
+
+    pValueTitle->setValue(&title);
+    pValueName->setValue(&name);
+    pValueFunc->setValue(&func);
+    pValue11->setValue(&content11);
+    pValue12->setValue(&content12);
+    pValue21->setValue(&content21);
+    pValue22->setValue(&content22);
+    pValue31->setValue(&content31);
+    pValue32->setValue(&content32);
+    pValue41->setValue(&content41);
+    pValue42->setValue(&content42);
+
+    VecContentItemType itemTitle,itemName,itemPicture,itemPanel,itemSound,itemDebug;
+    itemTitle.push_back(pValueTitle);
+    itemName.push_back(pValueName);
+    itemName.push_back(pValueFunc);
+    itemPicture.push_back(pValue11);
+    itemPicture.push_back(pValue12);
+    itemPanel.push_back(pValue21);
+    itemPanel.push_back(pValue22);
+    itemSound.push_back(pValue31);
+    itemSound.push_back(pValue32);
+    itemDebug.push_back(pValue41);
+    itemDebug.push_back(pValue42);
+
     VecContentPageType firstPage;
-
-    string temp("i am title     ");
-    pValue2->setValue(&temp);
-    firstItem.push_back(pValue2);
-
-    int tempInt = 2;
-    pValue1->setValue(&tempInt);
-    secondItem.push_back(pValue1);
-
-
-    bool tempBool = true;
-    pValue3->setValue(&tempBool);
-    threeItem.push_back(pValue3);
-
-    firstPage.push_back(firstItem);
-    firstPage.push_back(secondItem);
-    firstPage.push_back(threeItem);
+    firstPage.push_back(itemTitle);
+    firstPage.push_back(itemName);
+    firstPage.push_back(itemPicture);
+    firstPage.push_back(itemPanel);
+    firstPage.push_back(itemSound);
+    firstPage.push_back(itemDebug);
 
     mapPageContents[PageType::PageMain] = firstPage;
 }
@@ -79,21 +115,16 @@ void ImfoManager::setMainPageEventID()
     debugTool->outputString("ImfoManager::setMainPageEventID    set main page event id\n");
 
     VecEventID vecEventID;
-    EventID first,second,third;
+    EventID first,second;
 
     first.type = EventType::EventTypeMain;
     first.detail = EventDetail::DetailShowUI;
 
     second.type = EventType::EventTypeMain;
-    second.detail = EventDetail::DetailTurnUp;
-
-
-    third.type = EventType::EventTypeMain;
-    third.detail = EventDetail::DetailChangeValue;
+    second.detail = EventDetail::DetailChangeValue;
 
     vecEventID.push_back(first);
     vecEventID.push_back(second);
-    vecEventID.push_back(third);
 
     pageEventID[PageType::PageMain] = vecEventID;
 }
@@ -101,38 +132,49 @@ void ImfoManager::setMainPageEventID()
 void ImfoManager::setPicturePage()
 {
     DebugTool *debugTool = DebugTool::getSingleton();
-    debugTool->outputString("ImfoManager::setPicturePage    set first page content\n");
+    debugTool->outputString("ImfoManager::setMainPage    set first page content\n");
 
-    UIContentFactory* contentFactory = UIContentFactory::getSingleton();
-    UIContentBase* pValue = contentFactory->create(ContentType::ContentString);
+    UIContentFactory *contentFactory = UIContentFactory::getSingleton();
+
+    UIContentBase* pValueTitle = contentFactory->create(ContentType::ContentString);
+    UIContentBase* pValueName = contentFactory->create(ContentType::ContentString);
+    UIContentBase* pValueFunc = contentFactory->create(ContentType::ContentString);
+    UIContentBase* pValue11 = contentFactory->create(ContentType::ContentString);
+    UIContentBase* pValue12 = contentFactory->create(ContentType::ContentInt);
     UIContentBase* pValue21 = contentFactory->create(ContentType::ContentString);
-    UIContentBase* pValue22 = contentFactory->create(ContentType::ContentString);
-    UIContentBase* pValue31 = contentFactory->create(ContentType::ContentString);
-    UIContentBase* pValue32 = contentFactory->create(ContentType::ContentString);
+    UIContentBase* pValue22 = contentFactory->create(ContentType::ContentInt);
 
-    VecContentItemType firstItem,secondItem,threeItem;
+
+    string title("Picture Page");
+    string name("Name");
+    string func("Function");
+    string content11("Brightness");
+    int content12(0);
+    string content21("Contrast");
+    int content22(0);
+
+    pValueTitle->setValue(&title);
+    pValueName->setValue(&name);
+    pValueFunc->setValue(&func);
+    pValue11->setValue(&content11);
+    pValue12->setValue(&content12);
+    pValue21->setValue(&content21);
+    pValue22->setValue(&content22);
+
+    VecContentItemType itemTitle,itemName,itemBrightness,itemContrast;
+    itemTitle.push_back(pValueTitle);
+    itemName.push_back(pValueName);
+    itemName.push_back(pValueFunc);
+    itemBrightness.push_back(pValue11);
+    itemBrightness.push_back(pValue12);
+    itemContrast.push_back(pValue21);
+    itemContrast.push_back(pValue22);
+
     VecContentPageType firstPage;
-
-    string temp("i am title     ");
-    pValue->setValue(&temp);
-    firstItem.push_back(pValue);
-    firstPage.push_back(firstItem);
-
-    string secondFirst("second1     ");
-    pValue21->setValue(&secondFirst);
-    secondItem.push_back(pValue21);
-    string secondSecond("second2    ");
-    pValue22->setValue(&secondSecond);
-    secondItem.push_back(pValue22);
-    firstPage.push_back(secondItem);
-
-    string threeFirst("threeFirst    ");
-    pValue31->setValue(&threeFirst);
-    threeItem.push_back(pValue31);
-    string threeSecond("threeSecond    ");
-    pValue32->setValue(&threeSecond);
-    threeItem.push_back(pValue32);
-    firstPage.push_back(threeItem);
+    firstPage.push_back(itemTitle);
+    firstPage.push_back(itemName);
+    firstPage.push_back(itemBrightness);
+    firstPage.push_back(itemContrast);
 
     mapPageContents[PageType::PagePicture] = firstPage;
 }
@@ -148,24 +190,156 @@ void ImfoManager::setPictureEventID()
     first.detail = EventDetail::DetailShowUI;
 
     second.type = EventType::EventTypePicture;
-    second.detail = EventDetail::DetailTurnUp;
-
-    third.type = EventType::EventTypePicture;
-    third.detail = EventDetail::DetailChangeValue;
+    second.detail = EventDetail::DetailChangeValue;
 
     vecEventID.push_back(first);
     vecEventID.push_back(second);
-    vecEventID.push_back(third);
 
     pageEventID[PageType::PagePicture] = vecEventID;
 }
 void ImfoManager::setPanelPage()
 {
+    DebugTool *debugTool = DebugTool::getSingleton();
+    debugTool->outputString("ImfoManager::setMainPage    set first page content\n");
 
+    UIContentFactory *contentFactory = UIContentFactory::getSingleton();
+
+    UIContentBase* pValueTitle = contentFactory->create(ContentType::ContentString);
+    UIContentBase* pValueName = contentFactory->create(ContentType::ContentString);
+    UIContentBase* pValueFunc = contentFactory->create(ContentType::ContentString);
+    UIContentBase* pValue11 = contentFactory->create(ContentType::ContentString);
+    UIContentBase* pValue12 = contentFactory->create(ContentType::ContentBool);
+    UIContentBase* pValue21 = contentFactory->create(ContentType::ContentString);
+    UIContentBase* pValue22 = contentFactory->create(ContentType::ContentBool);
+
+
+    string title("Panel Page");
+    string name("Name");
+    string func("Function");
+    string content11("Panel On");
+    bool content12(false);
+    string content21("BacklLight On");
+    bool content22(false);
+
+    pValueTitle->setValue(&title);
+    pValueName->setValue(&name);
+    pValueFunc->setValue(&func);
+    pValue11->setValue(&content11);
+    pValue12->setValue(&content12);
+    pValue21->setValue(&content21);
+    pValue22->setValue(&content22);
+
+    VecContentItemType itemTitle,itemName,itemPanelOn,itemBackLight;
+    itemTitle.push_back(pValueTitle);
+    itemName.push_back(pValueName);
+    itemName.push_back(pValueFunc);
+    itemPanelOn.push_back(pValue11);
+    itemPanelOn.push_back(pValue12);
+    itemBackLight.push_back(pValue21);
+    itemBackLight.push_back(pValue22);
+
+    VecContentPageType firstPage;
+    firstPage.push_back(itemTitle);
+    firstPage.push_back(itemName);
+    firstPage.push_back(itemPanelOn);
+    firstPage.push_back(itemBackLight);
+
+    mapPageContents[PageType::PagePanel] = firstPage;
 }
 void ImfoManager::setPanelPageEventID()
 {
+    DebugTool *debugTool = DebugTool::getSingleton();
+    debugTool->outputString("ImfoManager::setPictureEventID    \n");
 
+    VecEventID vecEventID;
+    EventID first,second,third;
+
+    first.type = EventType::EventTypePanel;
+    first.detail = EventDetail::DetailShowUI;
+
+    second.type = EventType::EventTypePanel;
+    second.detail = EventDetail::DetailChangeValue;
+
+    vecEventID.push_back(first);
+    vecEventID.push_back(second);
+
+    pageEventID[PageType::PagePanel] = vecEventID;
+}
+void ImfoManager::setSoundPage()
+{
+    DebugTool *debugTool = DebugTool::getSingleton();
+    debugTool->outputString("ImfoManager::setMainPage    set first page content\n");
+
+    UIContentFactory *contentFactory = UIContentFactory::getSingleton();
+
+    UIContentBase* pValueTitle = contentFactory->create(ContentType::ContentString);
+    UIContentBase* pValueName = contentFactory->create(ContentType::ContentString);
+    UIContentBase* pValueFunc = contentFactory->create(ContentType::ContentString);
+    UIContentBase* pValue11 = contentFactory->create(ContentType::ContentString);
+    UIContentBase* pValue12 = contentFactory->create(ContentType::ContentInt);
+    UIContentBase* pValue21 = contentFactory->create(ContentType::ContentString);
+    UIContentBase* pValue22 = contentFactory->create(ContentType::ContentInt);
+    UIContentBase *pValue31 = contentFactory->create(ContentType::ContentString);
+    UIContentBase *pValue32 = contentFactory->create(ContentType::ContentInt);
+
+    string title("Sound Page");
+    string name("Name");
+    string func("Function");
+    string content11("Treble");
+    int content12(0);
+    string content21("Bass");
+    int content22(0);
+    string content31("Balance");
+    int content32(0);
+
+    pValueTitle->setValue(&title);
+    pValueName->setValue(&name);
+    pValueFunc->setValue(&func);
+    pValue11->setValue(&content11);
+    pValue12->setValue(&content12);
+    pValue21->setValue(&content21);
+    pValue22->setValue(&content22);
+    pValue31->setValue(&content31);
+    pValue32->setValue(&content32);
+
+    VecContentItemType itemTitle,itemName,itemTreble,itemBase,itemBalance;
+    itemTitle.push_back(pValueTitle);
+    itemName.push_back(pValueName);
+    itemName.push_back(pValueFunc);
+    itemTreble.push_back(pValue11);
+    itemTreble.push_back(pValue12);
+    itemBase.push_back(pValue21);
+    itemBase.push_back(pValue22);
+    itemBalance.push_back(pValue31);
+    itemBalance.push_back(pValue32);
+
+    VecContentPageType firstPage;
+    firstPage.push_back(itemTitle);
+    firstPage.push_back(itemName);
+    firstPage.push_back(itemTreble);
+    firstPage.push_back(itemBase);
+    firstPage.push_back(itemBalance);
+
+    mapPageContents[PageType::PageSound] = firstPage;
+}
+void ImfoManager::setSoundPageEventID()
+{
+    DebugTool *debugTool = DebugTool::getSingleton();
+    debugTool->outputString("ImfoManager::setPictureEventID    \n");
+
+    VecEventID vecEventID;
+    EventID first,second,third;
+
+    first.type = EventType::EventTypeSound;
+    first.detail = EventDetail::DetailShowUI;
+
+    second.type = EventType::EventTypeSound;
+    second.detail = EventDetail::DetailChangeValue;
+
+    vecEventID.push_back(first);
+    vecEventID.push_back(second);
+
+    pageEventID[PageType::PageSound] = vecEventID;
 }
 VecEventID ImfoManager::getPageEventID(PageType pageTypePara)
 {

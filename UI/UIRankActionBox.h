@@ -20,6 +20,8 @@ public:
 public:
     virtual void show();
     virtual UIRankAction* create();
+    virtual int getLineX(int);
+    virtual int getLineY(int);
 private:
     vector<SizeBox> vecRank;
 };
